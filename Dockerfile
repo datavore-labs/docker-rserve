@@ -16,9 +16,9 @@ RUN mkdir ${RSERVE_HOME}/work
 
 EXPOSE 6311
 
-HEALTHCHECK --interval=2s --timeout=3s \
- CMD sleep 1 | \
- 		telnet localhost 6311 | \
-		grep -q Rsrv0103QAP1 || exit 1
+#HEALTHCHECK --interval=2s --timeout=3s \
+# CMD sleep 1 | \
+# 		telnet localhost 6311 | \
+#		grep -q Rsrv0103QAP1 || exit 1
 
 CMD ["/opt/rserve/bin/run_rserve.sh"]
