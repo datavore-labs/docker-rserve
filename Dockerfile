@@ -3,7 +3,13 @@ FROM artemklevtsov/r-alpine:latest
 RUN R -e "install.packages('TTR', repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('xts', repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('forecast', repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages('Rserve', repos='http://cran.us.r-project.org')"
+
+RUN apk add --no-cache coreutils \
+    ca-certificates \
+    openssl-dev \
+    musl-dev
+
+RUN R -e "install.packages('Rserve', repos='http://rforge.net')"
 
 RUN mkdir -p /opt/rserve
 ENV RSERVE_HOME /opt/rserve

@@ -2,4 +2,11 @@
 
 CONFIG_PATH=${RSERVE_HOME}/etc/Rserv.conf
 
-R -e 'library(Rserve)' -e 'run.Rserve(config.file = "'${CONFIG_PATH}'")'
+R \
+-e 'library(TTR)' \
+-e 'library(forecast)' \
+-e 'library(stats)' \
+-e 'library(xts)' \
+-e 'library(Rserve)' \
+-e 'run.Rserve(config.file = "'${CONFIG_PATH}'")'
+
