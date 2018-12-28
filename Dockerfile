@@ -1,8 +1,6 @@
 FROM artemklevtsov/r-alpine:latest
 
-RUN R -e "install.packages('TTR', repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages('xts', repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages('forecast', repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('TTR', 'xts', 'forecast', 'strucchange'), repos='http://cran.us.r-project.org')"
 
 RUN apk add --no-cache coreutils \
     ca-certificates \
