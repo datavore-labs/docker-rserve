@@ -1,11 +1,14 @@
 FROM artemklevtsov/r-alpine:latest
 
-RUN R -e "install.packages(c('TTR', 'xts', 'forecast', 'strucchange'), repos='http://cran.us.r-project.org')"
 
-RUN apk add --no-cache coreutils \
+RUN apk update && apk add  \
+	linux-headers \
+    --no-cache coreutils \
     ca-certificates \
     openssl-dev \
     musl-dev
+
+RUN R -e "install.packages(c('TTR', 'xts', 'forecast', 'strucchange', 'prophet'), repos='http://cran.us.r-project.org')"
 
 RUN R -e "install.packages('Rserve', repos='http://rforge.net')"
 
