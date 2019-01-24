@@ -9,6 +9,7 @@ R \
 -e 'library(xts)' \
 -e 'library(strucchange)' \
 -e 'library(prophet)' \
+-e 'library(data.table)' \
 -e 'library(Rserve)' \
 -e 'run.Rserve(config.file = "'${CONFIG_PATH}'")'
 

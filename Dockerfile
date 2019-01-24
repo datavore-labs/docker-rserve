@@ -8,7 +8,7 @@ RUN apk update && apk add  \
     openssl-dev \
     musl-dev
 
-RUN R -e "install.packages(c('TTR', 'xts', 'forecast', 'strucchange', 'prophet'), repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('data.table', 'TTR', 'xts', 'forecast', 'strucchange', 'prophet'), repos='http://cran.us.r-project.org')"
 
 RUN R -e "install.packages('Rserve', repos='http://rforge.net')"
 
