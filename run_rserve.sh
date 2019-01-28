@@ -10,6 +10,7 @@ R \
 -e 'library(strucchange)' \
 -e 'library(prophet)' \
 -e 'library(data.table)' \
+-e 'library(AnomalyDetection)' \
 -e 'library(Rserve)' \
 -e 'run.Rserve(config.file = "'${CONFIG_PATH}'")'
 

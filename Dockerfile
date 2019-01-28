@@ -8,9 +8,21 @@ RUN apk update && apk add  \
     openssl-dev \
     musl-dev
 
+
 RUN R -e "install.packages(c('data.table', 'TTR', 'xts', 'forecast', 'strucchange', 'prophet'), repos='http://cran.us.r-project.org')"
 
 RUN R -e "install.packages('Rserve', repos='http://rforge.net')"
+
+COPY ./packages /tmp
+
+# Install devtools dependency fs from source (because current CRAN image doesn't
+# work on alpine)
+RUN R -e "install.packages('Rcpp', repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages('/tmp/fs_master.tar.gz', repos = NULL, type='source')"
+
+# Install devtools and AnomalyDetection library
+RUN R -e "install.packages('devtools', repos='http://cran.us.r-project.org')"
+RUN R -e "devtools::install_github('twitter/AnomalyDetection')"
 
 RUN mkdir -p /opt/rserve
 ENV RSERVE_HOME /opt/rserve
