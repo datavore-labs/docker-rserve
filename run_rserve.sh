@@ -11,6 +11,7 @@ R \
 -e 'library(prophet)' \
 -e 'library(data.table)' \
 -e 'library(AnomalyDetection)' \
+-e 'library(Rtsne)' \
 -e 'library(Rserve)' \
 -e 'run.Rserve(config.file = "'${CONFIG_PATH}'")'
 
