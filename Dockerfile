@@ -24,7 +24,7 @@ RUN R -e "install.packages('/tmp/fs_master.tar.gz', repos = NULL, type='source')
 RUN R -e "install.packages('devtools', repos='http://cran.us.r-project.org')"
 RUN R -e "devtools::install_github('twitter/AnomalyDetection')"
 
-RUN R -e "install.packages('Rtsne', repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('Rtsne', 'randomForest'), repos='http://cran.us.r-project.org')"
 
 RUN mkdir -p /opt/rserve
 ENV RSERVE_HOME /opt/rserve
