@@ -1,0 +1,32 @@
+version: v1.0
+name: dv-rserve
+agent:
+  machine:
+    type: e1-standard-2
+
+  containers:
+    - name: main
+      image: gcr.io/datavore-dev/datavore/dv-build-box:46fe129
+
+  image_pull_secrets:
+    - name: gcr-pull-secrets
+
+blocks:
+  - name: "Build"
+    task:
+      jobs:
+        - name: Docker build and push
+          commands:
+            - echo "Docker build..."
+            - docker build -t gcr.io/datavore-dev/datavore/dv-rserve:${SEMAPHORE_GIT_SHA:0:7} .
+            - echo "Docker publish..."
+            - docker push gcr.io/datavore-dev/datavore/dv-rserve:${SEMAPHORE_GIT_SHA:0:7}
+      secrets:
+        - name: "GKE credentials"
+      prologue:
+        commands:
+          - export project=datavore-dev
+          # Authenticate using the file injected from the secret
+          - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}" --project "${project}"
+          - gcloud auth configure-docker --quiet --project "${project}"
+          - checkout
