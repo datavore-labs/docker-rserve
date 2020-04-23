@@ -30,3 +30,7 @@ blocks:
           - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}" --project "${project}"
           - gcloud auth configure-docker --quiet --project "${project}"
           - checkout
+
+promotions:
+  - name: Deploy to ECR
+    pipeline_file: deploy-ecr.yaml
