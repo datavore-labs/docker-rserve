@@ -6,7 +6,7 @@ agent:
 
   containers:
     - name: main
-      image: gcr.io/datavore-dev/datavore/dv-build-box:46fe129
+      image: gcr.io/datavore-dev/datavore/dv-build-box:5943b5f
 
   image_pull_secrets:
     - name: gcr-pull-secrets
